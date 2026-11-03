@@ -1,0 +1,18 @@
+{
+  "gender": "Ж",
+  "birth_date": "15.06.1965",
+  "diagnosis": "НМРЛ",
+  "diagnosis_date": "01.02.2019",
+  "primary_removal_date": "не удален",
+  "brain_metastases_date": "01.06.2020",
+  "activating_mutations": "нет",
+  "wbrt_date": "нет",
+  "brain_surgery_date": "нет",
+  "radiosurgery_count": 1,
+  "first_radiosurgery_date": "01.07.2020",
+  "karnofsky_index": 80,
+  "lesion_count": 2,
+  "total_lesion_volume": 3.5,
+  "extracranial_metastases": "нет",
+  "drug_treatment": "Без лечения"
+}

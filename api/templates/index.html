@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Прогноз интракраниальной прогрессии</title>
+  <link rel="stylesheet" href="/static/style.css">
+  <script src="/static/app.js" defer></script>
+</head>
+<body>
+  <main>
+    <header>
+      <p class="eyebrow">CATBOOST · АНСАМБЛЬ ИЗ 5 МОДЕЛЕЙ</p>
+      <h1>Прогноз интракраниальной прогрессии</h1>
+      <p>Введите исходные признаки, чтобы получить оценку модели.</p>
+      <p class="note">Исследовательская модель. Прогноз не является медицинским заключением.</p>
+    </header>
+    <form id="prediction-form">
+      <fieldset>
+        <legend>Пациент и диагноз</legend>
+        <div class="grid">
+          <label>Пол<select name="gender" required><option value="">Выберите</option><option>М</option><option>Ж</option></select></label>
+          <label>Дата рождения<input name="birth_date" type="date" required></label>
+          <label>Онкологический диагноз<input name="diagnosis" placeholder="Например, НМРЛ" required></label>
+          <label>Дата постановки диагноза<input name="diagnosis_date" type="date"></label>
+          <label>Дата развития МГМ<input name="brain_metastases_date" type="date"></label>
+          <label>Активирующие мутации<select name="activating_mutations"><option value="">Неизвестно</option><option>есть</option><option>нет</option></select></label>
+        </div>
+      </fieldset>
+      <fieldset>
+        <legend>Лечение</legend>
+        <div class="grid">
+          <label>Дата первой радиохирургии<input name="first_radiosurgery_date" type="date" required></label>
+          <label>Число РХ процедур на гамма-ноже<input name="radiosurgery_count" type="number" min="0" step="1" required></label>
+          <label>Удаление первичного очага<select name="primary_removal_state"><option value="">Неизвестно</option><option value="не удален">Не удалён</option><option value="date">Дата известна</option></select><input name="primary_removal_date" type="date" aria-label="Дата удаления первичного очага" hidden></label>
+          <label>Облучение всего головного мозга<select name="wbrt_state"><option value="">Неизвестно</option><option value="нет">Не проводилось</option><option value="date">Дата известна</option></select><input name="wbrt_date" type="date" aria-label="Дата проведения ОВГМ" hidden></label>
+          <label>Операция на головном мозге<select name="brain_surgery_state"><option value="">Неизвестно</option><option value="нет">Не проводилась</option><option value="date">Дата известна</option></select><input name="brain_surgery_date" type="date" aria-label="Дата операции на ГМ" hidden></label>
+          <label>Лекарственное лечение<input name="drug_treatment" placeholder="Например, Химиотерапия"></label>
+        </div>
+      </fieldset>
+      <fieldset>
+        <legend>Состояние и очаги</legend>
+        <div class="grid">
+          <label>Индекс Карновского<input name="karnofsky_index" type="number" min="0" max="100" step="1" required></label>
+          <label>Число очагов в головном мозге<input name="lesion_count" type="number" min="0" step="1" required></label>
+          <label>Суммарный объём очагов<input name="total_lesion_volume" type="number" min="0" step="any" required></label>
+          <label>Экстракраниальные метастазы<select name="extracranial_metastases"><option value="">Неизвестно</option><option>есть</option><option>нет</option></select></label>
+        </div>
+      </fieldset>
+      <div class="actions"><button id="submit-button" type="submit">Получить прогноз</button><a href="/docs">Документация API ↗</a></div>
+    </form>
+    <section id="result" aria-live="polite" hidden></section>
+    <footer>Пустые необязательные поля обрабатываются как неизвестные значения. Данные формы не сохраняются приложением.</footer>
+  </main>
+</body>
+</html>
